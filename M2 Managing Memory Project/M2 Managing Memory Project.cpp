@@ -17,6 +17,11 @@ struct Student
     char grade;
 };
 
+//function prototypes
+char getLetterGrade(double avg);
+void calcGrade(Student* students, int numStudents, int numTests);
+
+
 int main()
 {
     
@@ -25,6 +30,28 @@ int main()
     return 0;
 }
 
+//functions
+void calcGrades(Student* students, int numStudents, int numTests)
+{
+    for (int i = 0; i < numStudents; ++i)
+    {
+        int total = 0;
+        for (int j = 0; j < numTests; ++j)
+        {
+            total += students[i].tests[j];
+        }
+        students[i].average = static_cast<double>(total) / numTests;
+        students[i].grade = getLetterGrade(students[i].average);
+    }
+}
+char getLetterGrade(double avg)
+{
+    if (avg >= 90.0) return 'A';
+    else if (avg >= 80.0) return 'B';
+    else if (avg >= 70.0) return 'C';
+    else if (avg >= 60.0) return 'D';
+    else return 'F';
+}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
