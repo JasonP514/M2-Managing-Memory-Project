@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="M2 Managing Memory Project/M2 Managing Memory Project.vcxproj" />
+  <Project Path="M2 Managing Memory Project/M2 Managing Memory Project.vcxproj" Id="bb277bed-5e84-4b95-85f6-faf5894bd8b2" />
 </Solution>
