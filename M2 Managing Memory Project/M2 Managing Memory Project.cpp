@@ -4,32 +4,53 @@
 #include <iostream>
 #include <utility>
 
-
+using namespace std;
 
 //function prototypes
-void reverseArray(int arr[], int n){}
+void reverseArray(int arr[], int n) 
+    {
+        int start = 0;
+        int end = n - 1;
+
+        while (start < end)
+        {
+            std::swap(arr[start], arr[end]);
+
+            start++;
+            end--;
+        }
+    }
+
 
 
 int main()
 {
+    int arr[] = { 1,2,3,4,5 };
 
-}
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-
-//function definitions
-void reverseArray(int arr[], int n)
-{
-    int start = 0;
-    int end = n - 1;
-
-    while (start < end)
+    cout << "Original Array: ";
+    for (int i = 0; i < n; i++)
     {
-        std::swap(arr[start], arr[end]);
-
-        start++;
-        end--;
+        cout << arr[i] << " ";
     }
+    cout << endl;
+
+    reverseArray(arr, n);
+
+    cout << "Reversed Array: ";
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
 }
+
+
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
