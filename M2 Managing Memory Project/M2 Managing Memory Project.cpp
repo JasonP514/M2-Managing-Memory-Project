@@ -2,10 +2,33 @@
 //
 
 #include <iostream>
+#include <utility>
+
+
+
+//function prototypes
+void reverseArray(int arr[], int n){}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+
+}
+
+
+//function definitions
+void reverseArray(int arr[], int n)
+{
+    int start = 0;
+    int end = n - 1;
+
+    while (start < end)
+    {
+        std::swap(arr[start], arr[end]);
+
+        start++;
+        end--;
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
