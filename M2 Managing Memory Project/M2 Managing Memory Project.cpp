@@ -2,10 +2,27 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+struct Student
+{
+    string name;
+    int idNum;
+    int* tests;
+    double average;
+    char grade;
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    
+
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
