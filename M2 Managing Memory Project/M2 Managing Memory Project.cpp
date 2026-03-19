@@ -20,7 +20,7 @@ struct Student
 //function prototypes
 char getLetterGrade(double avg);
 void calcGrade(Student* students, int numStudents, int numTests);
-
+void displayReport(const Student* students, int numStudents, int numTests);
 
 int main()
 {
@@ -44,6 +44,7 @@ void calcGrades(Student* students, int numStudents, int numTests)
         students[i].grade = getLetterGrade(students[i].average);
     }
 }
+
 char getLetterGrade(double avg)
 {
     if (avg >= 90.0) return 'A';
@@ -52,6 +53,27 @@ char getLetterGrade(double avg)
     else if (avg >= 60.0) return 'D';
     else return 'F';
 }
+
+void displayReport(const Student* students, int numStudents, int numTests)
+{
+    cout << fixed << setprecision(2);
+    cout << "\n-- Course Grade Report--\n";
+    cout << left << setw(15) << "Name"
+        << setw(10) << "ID#"
+        << setw(10) << "Average"
+        << setw(5) << "Grade" << endl;
+    cout << "---------------------------\n";
+
+    for (int i = 0; i < numStudents; ++i;)
+    {
+        cout << left << setw(15) << students[i].name
+            << setw(10) << students[i].idNum
+            << setw(10) << students[i].average
+            << setw(5) << students[i].grade << endl;
+    }
+}
+
+
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
