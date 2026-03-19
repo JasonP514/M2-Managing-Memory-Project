@@ -19,13 +19,51 @@ struct Student
 
 //function prototypes
 char getLetterGrade(double avg);
-void calcGrade(Student* students, int numStudents, int numTests);
+void calcGrades(Student* students, int numStudents, int numTests);
 void displayReport(const Student* students, int numStudents, int numTests);
+void releaseMemory(Student* students, int numStudents);
 
 int main()
 {
-    
+    int numStudents, numTests;
+    ifstream inputFile("student_data.txt");
 
+    if (!inputFile)
+    {
+        cerr << "Error: could not open input file student_data.txt" << endl;
+        return 1;
+    }
+
+    inputFile >> numStudents >> numTests;
+
+    if (numStudents <= 0 || numTests <= 0)
+    {
+        cerr << "Error: Invalid number of students or tests in file." << endl;
+        inputFile.close();
+        return 1;
+    }
+
+    Student* students = new Student[numStudents];
+
+    for (int i = 0; i < numStudents; ++i)
+    {
+        inputFile >> students[i].name >> students[i].idNum;
+        students[i].tests = new int[numTests];
+        for (int j = 0; j < numTests; ++j)
+        {
+            inputFile >> students[i].tests[j];
+        }
+    }
+
+    inputFile.close();
+
+    calcGrades(students, numStudents, numTests);
+
+    displayReport(students, numStudents, numTests);
+
+    releaseMemory(students, numStudents);
+
+    students = nullptr;
 
     return 0;
 }
@@ -64,7 +102,7 @@ void displayReport(const Student* students, int numStudents, int numTests)
         << setw(5) << "Grade" << endl;
     cout << "---------------------------\n";
 
-    for (int i = 0; i < numStudents; ++i;)
+    for (int i = 0; i < numStudents; ++i) 
     {
         cout << left << setw(15) << students[i].name
             << setw(10) << students[i].idNum
@@ -73,6 +111,15 @@ void displayReport(const Student* students, int numStudents, int numTests)
     }
 }
 
+void releaseMemory(Student* students, int numStudents) 
+{
+    for (int i = 0; i < numStudents; ++i)
+    {
+        delete[] students[i].tests;
+        students[i].tests = nullptr;
+    }
+    delete[] students;
+}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
