@@ -2,48 +2,50 @@
 //
 
 #include <iostream>
-#include <utility>
 
 using namespace std;
 
-//function prototypes
-void reverseArray(int arr[], int n) 
-    {
-        int start = 0;
-        int end = n - 1;
-
-        while (start < end)
-        {
-            std::swap(arr[start], arr[end]);
-
-            start++;
-            end--;
-        }
-    }
-
-
-
-int main()
+// Function
+void reverseArray(int* arr, int size) 
 {
-    int arr[] = { 1,2,3,4,5 };
-
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    cout << "Original Array: ";
-    for (int i = 0; i < n; i++)
+    int start = 0;
+    int end = size - 1;
+    while (start < end) 
     {
-        cout << arr[i] << " ";
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        start++;
+        end--;
     }
-    cout << endl;
+}
+
+int main() 
+{
+    int n;
+    cout << "Enter size of array: ";
+    cin >> n;
+
+    int* arr = new int[n];
+
+    std::cout << "Enter " << n << " elements: ";
+    for (int i = 0; i < n; i++) 
+    {
+        std::cin >> arr[i];
+    }
 
     reverseArray(arr, n);
 
-    cout << "Reversed Array: ";
-    for (int i = 0; i < n; i++)
+    cout << "Reversed array: ";
+    for (int i = 0; i < n; i++) 
     {
         cout << arr[i] << " ";
     }
     cout << endl;
+
+    delete[] arr;
+    arr = nullptr;
 
     return 0;
 }
